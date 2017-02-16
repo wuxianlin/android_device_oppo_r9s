@@ -1,0 +1,3 @@
+#ZhiYong.Lin@Plf.Framework,2015.01.15:add for allow app set oppo property_service
+# OPPO properties
+oppo.                   u:object_r:oppo_prop:s0

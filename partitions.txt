@@ -1,0 +1,121 @@
+wuxianlin@wuxianlin-ubuntu:~/android/cm-13.0/device/oppo/r9s$ adb shell ls -l /dev/block/bootdevice/by-name
+DDR -> /dev/block/mmcblk0p18
+DRIVER -> /dev/block/mmcblk0p51
+LOGO -> /dev/block/mmcblk0p17
+aboot -> /dev/block/mmcblk0p22
+abootbak -> /dev/block/mmcblk0p23
+apdp -> /dev/block/mmcblk0p48
+boot -> /dev/block/mmcblk0p24 65536x1024=67108864
+cache -> /dev/block/mmcblk0p27 262144x1024=268435456
+cmnlib -> /dev/block/mmcblk0p42
+cmnlib64 -> /dev/block/mmcblk0p44
+cmnlib64bak -> /dev/block/mmcblk0p45
+cmnlibbak -> /dev/block/mmcblk0p43
+config -> /dev/block/mmcblk0p32
+devcfg -> /dev/block/mmcblk0p10
+devcfgbak -> /dev/block/mmcblk0p11
+devinfo -> /dev/block/mmcblk0p26
+dip -> /dev/block/mmcblk0p36
+dpo -> /dev/block/mmcblk0p50
+dsp -> /dev/block/mmcblk0p12
+fsc -> /dev/block/mmcblk0p2
+fsg -> /dev/block/mmcblk0p19
+keymaster -> /dev/block/mmcblk0p46
+keymasterbak -> /dev/block/mmcblk0p47
+keystore -> /dev/block/mmcblk0p31
+limits -> /dev/block/mmcblk0p34
+lksecapp -> /dev/block/mmcblk0p40
+lksecappbak -> /dev/block/mmcblk0p41
+mcfg -> /dev/block/mmcblk0p39
+mdtp -> /dev/block/mmcblk0p37
+misc -> /dev/block/mmcblk0p30
+modem -> /dev/block/mmcblk0p1
+modemst1 -> /dev/block/mmcblk0p13
+modemst2 -> /dev/block/mmcblk0p14
+mota -> /dev/block/mmcblk0p35
+msadp -> /dev/block/mmcblk0p49
+oem -> /dev/block/mmcblk0p33
+oppodycnvbk -> /dev/block/mmcblk0p15
+oppostanvbk -> /dev/block/mmcblk0p16
+persist -> /dev/block/mmcblk0p29 32768x1024=36626432
+recovery -> /dev/block/mmcblk0p25 65536x1024=67108864
+reserve1 -> /dev/block/mmcblk0p52
+reserve2 -> /dev/block/mmcblk0p53
+reserve3 -> /dev/block/mmcblk0p54
+reserve4 -> /dev/block/mmcblk0p55
+rpm -> /dev/block/mmcblk0p6
+rpmbak -> /dev/block/mmcblk0p7
+sbl1 -> /dev/block/mmcblk0p4
+sbl1bak -> /dev/block/mmcblk0p5
+sec -> /dev/block/mmcblk0p20
+splash -> /dev/block/mmcblk0p21
+ssd -> /dev/block/mmcblk0p3
+syscfg -> /dev/block/mmcblk0p38
+system -> /dev/block/mmcblk0p28 2621440x1024=2684354560
+tz -> /dev/block/mmcblk0p8
+tzbak -> /dev/block/mmcblk0p9
+userdata -> /dev/block/mmcblk0p56 57388519x1024=58765843456
+wuxianlin@wuxianlin-ubuntu:~/android/cm-13.0/device/oppo/r9s$ adb shell cat /proc/partitions
+major minor  #blocks  name
+
+   7        0      98304 loop0
+ 254        0     524288 zram0
+ 179        0   61071360 mmcblk0
+ 179        1     131072 mmcblk0p1
+ 179        2          1 mmcblk0p2
+ 179        3          8 mmcblk0p3
+ 179        4        512 mmcblk0p4
+ 179        5        512 mmcblk0p5
+ 179        6        512 mmcblk0p6
+ 179        7        512 mmcblk0p7
+ 179        8       2048 mmcblk0p8
+ 179        9       2048 mmcblk0p9
+ 179       10        256 mmcblk0p10
+ 179       11        256 mmcblk0p11
+ 179       12      16384 mmcblk0p12
+ 179       13       1536 mmcblk0p13
+ 179       14       1536 mmcblk0p14
+ 179       15      10240 mmcblk0p15
+ 179       16      10240 mmcblk0p16
+ 179       17      16384 mmcblk0p17
+ 179       18         32 mmcblk0p18
+ 179       19       1536 mmcblk0p19
+ 179       20         16 mmcblk0p20
+ 179       21      11264 mmcblk0p21
+ 179       22       1024 mmcblk0p22
+ 179       23       1024 mmcblk0p23
+ 179       24      65536 mmcblk0p24
+ 179       25      65536 mmcblk0p25
+ 179       26       1024 mmcblk0p26
+ 179       27     262144 mmcblk0p27
+ 179       28    2621440 mmcblk0p28
+ 179       29      32768 mmcblk0p29
+ 179       30       1024 mmcblk0p30
+ 179       31        512 mmcblk0p31
+ 259        0         32 mmcblk0p32
+ 259        1     262144 mmcblk0p33
+ 259        2         32 mmcblk0p34
+ 259        3        512 mmcblk0p35
+ 259        4       1024 mmcblk0p36
+ 259        5      32768 mmcblk0p37
+ 259        6        512 mmcblk0p38
+ 259        7       4096 mmcblk0p39
+ 259        8        128 mmcblk0p40
+ 259        9        128 mmcblk0p41
+ 259       10        256 mmcblk0p42
+ 259       11        256 mmcblk0p43
+ 259       12        256 mmcblk0p44
+ 259       13        256 mmcblk0p45
+ 259       14        256 mmcblk0p46
+ 259       15        256 mmcblk0p47
+ 259       16        256 mmcblk0p48
+ 259       17        256 mmcblk0p49
+ 259       18          8 mmcblk0p50
+ 259       19      32768 mmcblk0p51
+ 259       20       2048 mmcblk0p52
+ 259       21      16384 mmcblk0p53
+ 259       22       2048 mmcblk0p54
+ 259       23      16384 mmcblk0p55
+ 259       24   57388519 mmcblk0p56
+ 179       32       4096 mmcblk0rpmb
+ 253        0   57388503 dm-0

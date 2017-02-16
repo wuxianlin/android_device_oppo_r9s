@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Group id='FOSS Config'>
+    <!-- version of FOSSConfig.xml should be maintained -->
+    <version>"0.1a"</version>
+
+    <!-- defaults will be used unless any mode overrides dynamic params -->
+    <!-- note that all dynamic parameters should be included for each mode -->
+    <default>
+    <!-- defaults for dynamic parameters -->
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>5</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>255 240 230 255</PowerSaveRatioOutput>
+    <!-- static parameters below -->
+    <LowBrightnessCutoff units='uint'>20</LowBrightnessCutoff>
+    <LuxEndPoint units='uint'>0</LuxEndPoint>
+    <EnableGradientDetection units='uint'>0</EnableGradientDetection>
+    <GradientDetectionThreshold units='uint'>80</GradientDetectionThreshold>
+    <PowerProfileTableLength units='uint'>8</PowerProfileTableLength>
+    <PowerProfileInput units='uint'>0 36 72 109 145 182 218 255</PowerProfileInput>
+    <PowerProfileOutput units='uint'>0 16 55 141 268 450 702 1023</PowerProfileOutput>
+    <LutUpdateSpeedTableLength units='uint'>4</LutUpdateSpeedTableLength>
+    <LutUpdateSpeedInput units='uint'>55 128 175 204</LutUpdateSpeedInput>
+    <LutUpdateSpeedOutput units='uint'>50 10 5 5</LutUpdateSpeedOutput>
+    </default>
+
+    <!-- example mode for video use case
+    LUT update delay count is reduced for faster reaction to changing
+    video content -->
+    <mode id='0'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>255 204 204 192</PowerSaveRatioOutput>
+    </mode>
+
+    <mode id='1'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>255 204 204 192</PowerSaveRatioOutput>
+    </mode>
+
+    <mode id='2'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>255 204 204 192</PowerSaveRatioOutput>
+    </mode>
+
+    <mode id='3'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>245 194 194 182</PowerSaveRatioOutput>
+    </mode>
+
+    <mode id='4'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>235 184 184 172</PowerSaveRatioOutput>
+    </mode>
+
+    <mode id='5'>
+    <description>"Video"</description>
+    <ContrastStrength units='uint'>0</ContrastStrength>
+    <StaticSceneThreshold units = 'uint'>10</StaticSceneThreshold>
+    <LutUpdateDelayCount units = 'uint'>3</LutUpdateDelayCount>
+    <PowerSaveRatioTableLength units='uint'>4</PowerSaveRatioTableLength>
+    <PowerSaveRatioInput units='uint'>32 48 700 788</PowerSaveRatioInput>
+    <PowerSaveRatioOutput units='uint'>225 174 174 162</PowerSaveRatioOutput>
+    </mode>
+
+</Group>

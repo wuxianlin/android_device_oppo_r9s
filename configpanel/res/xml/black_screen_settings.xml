@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <SwitchPreference
+            android:key="black_screen_setting_key"
+            android:title="@string/black_screen_gestures_settings_title"
+            android:summary="@string/black_screen_setting_title" />
+
+        <SwitchPreference
+            android:key="touchscreen_gesture_haptic_feedback"
+            android:dependency="black_screen_setting_key"
+            android:title="@string/haptic_feedback"
+            android:summary="@string/haptic_feedback_summary" />
+
+    <PreferenceCategory 
+        android:title="@string/quick_startup" 
+            android:dependency="black_screen_setting_key"
+        android:key="quick_startup">
+        <SwitchPreference 
+            android:title="@string/double_click_light_screen_title" 
+            android:key="double_click_light_screen_key" 
+            android:summary="@string/double_click_light_screen_summary" />
+        <SwitchPreference 
+            android:title="@string/draw_o_start_camera_title" 
+            android:key="draw_o_start_camera_key" 
+            android:summary="@string/draw_o_start_camera_summary" />
+        <SwitchPreference 
+            android:title="@string/open_light_device_title" 
+            android:key="open_light_device_key" 
+            android:summary="@string/open_light_device_summary" />
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:title="@string/music_control" 
+            android:dependency="black_screen_setting_key"
+        android:key="music_control">
+        <SwitchPreference 
+            android:title="@string/music_control_start_title" 
+            android:key="music_control_start_key" 
+            android:summary="@string/music_control_start_summary" />
+        <SwitchPreference 
+            android:title="@string/music_control_pause_title" 
+            android:key="music_control_pause_key" 
+            android:summary="@string/music_control_pause_summary" />
+        <SwitchPreference 
+            android:title="@string/music_control_prev_title" 
+            android:key="music_control_prev_key" 
+            android:summary="@string/music_control_prev_summary" />
+        <SwitchPreference 
+            android:title="@string/music_control_next_title" 
+            android:key="music_control_next_key" 
+            android:summary="@string/music_control_next_summary" />
+    </PreferenceCategory>
+</PreferenceScreen>

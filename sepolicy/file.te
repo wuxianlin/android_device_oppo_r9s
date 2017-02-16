@@ -1,0 +1,7 @@
+type sysfs_ps_sensor, sysfs_type, fs_type;
+type sysfs_fp_state, sysfs_type, fs_type;
+type sysfs_fpc_irq, sysfs_type, fs_type;
+type data_sfs_file, file_type, data_file_type;
+type proc_touchpanel, fs_type;
+type cam_proc, file_type;
+type nv_data_file, file_type;

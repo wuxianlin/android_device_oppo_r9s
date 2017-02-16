@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013-2014 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Gesture shortcuts -->
+    <string name="quick_startup">Quick startup</string>
+    <string name="music_control">Music control</string>
+    <string name="double_click_light_screen_summary" />
+    <string name="draw_o_start_camera_summary">Activate the camera by drawing a circle when the screen is off.</string>
+    <string name="music_control_prev_title">Draw &lt; to cut to previous track</string>
+    <string name="music_control_next_title">Draw > to cut to next track</string>
+    <string name="music_control_prev_summary">Cut to previous track by drawing &lt; when the screen is off.</string>
+    <string name="music_control_next_summary">Cut to next track by drawing > when the screen is off.</string>
+    <string name="music_control_summary">Control start of music play</string>
+    <string name="music_control_start_title">Play/pause music</string>
+    <string name="music_control_start_summary">Play/pause music by sliding down the screen with two fingers.</string>
+    <string name="music_control_pause_title">Pause current music</string>
+    <string name="music_control_pause_summary">When screen is off, draw a ‖ to control current music to pause</string>
+    <string name="black_screen_setting_title">Black Screen Setting</string>
+    <string name="double_click_light_screen_title">Double tap to wake the screen</string>
+    <string name="draw_o_start_camera_title">Draw a circle to activate the camera</string>
+    <string name="music_control_title">Music Cotrol Settings</string>
+    <string name="open_light_device_title">Draw a V to activate the flashlight</string>
+    <string name="open_light_device_summary">Activate the flashlight by drawing a V when the screen is off.</string>
+    <string name="black_screen_gestures_settings_title">Wake On Gesture</string>
+    <string name="haptic_feedback">Haptic feedback</string>
+    <string name="haptic_feedback_summary">Vibrate when a gesture got detected</string>
+</resources>

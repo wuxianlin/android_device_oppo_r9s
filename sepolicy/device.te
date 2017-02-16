@@ -1,0 +1,2 @@
+type fpc1020_device, dev_type;
+type homekey_device, dev_type;

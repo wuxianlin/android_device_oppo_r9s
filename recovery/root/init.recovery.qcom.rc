@@ -1,0 +1,28 @@
+on init
+    symlink /firmware/image /vendor/firmware
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+    write /proc/touchpanel/double_tap_enable 1
+    write /sys/class/power_supply/usb/otg_switch 1
+
+# separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
+service sbinqseecomd /sbin/qseecomd
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on property:ro.crypto.state=encrypted
+    start sbinqseecomd
+
+service logd /system/bin/logd
+    disabled
+    class core
+    socket logd stream 0666 logd logd
+    socket logdr seqpacket 0666 logd logd
+    socket logdw dgram 0222 logd logd
+    group root system
+

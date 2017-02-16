@@ -1,0 +1,80 @@
+##################################################################################
+### VENDOR_EDIT, OPPO All rights reserved.
+###
+### File: - init.oppo.rc
+### Author: jiangyg@PM
+###
+### ------------------------------- Revision History: ----------------------------
+### <author>                        <data>       <version>   <desc>
+### ------------------------------------------------------------------------------
+### jiangyg@PM                     2013-10-21                Create this file
+##################################################################################
+#ifdef VENDOR_EDIT
+#Haoran.Zhang@Swdp.Android.BuildConfig.BaseConfig, 2016/09/22, add for protect xkit
+on init
+   export XKIT /system/xbin/busybox
+#endif
+
+#ifdef VENDOR_EDIT
+#WeiHong.Li@Mobile.Network, 2015/09/11, Add suid_dumpable to capture rild's tombstone according to case 02090380
+#Zhengpeng@OnLineRD.AirService.RIL, 2013/11/4, Add for create opponvitems dir
+on boot
+	mkdir /data/opponvitems  0771 radio radio
+	write /proc/sys/fs/suid_dumpable 1
+	write /sys/class/power_supply/usb/otg_switch 1
+#endif
+#ifdef VENDOR_EDIT
+#Haitao.Zhou@BSP.Fingerprint.Secure, 2016/07/13, Add for creat rpmb_status floder in persist
+#Haitao.Zhou@BSP.Fingerprint.Payment, 2016/08/27, Add alipay service
+    mkdir /persist/rpmb_status
+    chmod 0777 /persist/rpmb_status
+
+service alipayservice /system/bin/alipayservice
+    class late_start
+    user system
+    group system
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#Deliang.Peng@Swdp.Android.Performance.Display, 2016/08/05, Add for Display Performance Service
+    chmod 0644 /data/system/oppo_display_perf_list.xml
+#endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#zhunn@OnLineRD.AirService.RIL, 2015/1/28, Add for cdma card cannot send sms in Yiwu
+	setprop persist.radio.force_on_dc true
+#endif
+
+#endif /* VENDOR_EDIT */
+
+# ifdef VENDOR_EDIT
+#WeiHong.Li@Mobile.Network, 2015/09/11, disalbe suid_dumpable if release_type=true to pass cts test
+on property:ro.build.release_type=true
+    write /proc/sys/fs/suid_dumpable 0
+
+# ifdef VENDOR_EDIT
+#fangpan@Swdp.shanghai, 2015/12/20, enable the procmod.ko when boot up
+on property:persist.sys.procmon_enable=1
+    insmod /system/lib/modules/procmon.ko -f
+    chown root system /sys/module/procmon/parameters/cpuload_thresh
+    chown root system /sys/module/procmon/parameters/io_thresh
+    chown root system /sys/module/procmon/parameters/mem_thresh
+    chown root system /sys/module/procmon/parameters/binder_thresh
+    chown root system /sys/module/procmon/parameters/trigger_time
+    chown root system /sys/module/procmon/parameters/enable
+# endif /* VENDOR_EDIT */
+
+#ifdef VENDOR_EDIT
+#Jianping.Zheng@Swdp.Android.Stability.Crash, 2015/11/06, Add for open print_system_murder feature in non release version
+on property:ro.secure=0
+    write /proc/sys/kernel/print_fatal_murder 1
+#endif
+
+#ifdef VENDOR_EDIT
+#Ziqing.GUO@Mobile.BSP.FINGERPRINT, 2016/01/16, Add for fingerprint
+service fpc1020_sh /system/bin/sh /init.oppo.fingerprints.sh
+    class main
+    user root
+    oneshot
+#endif
+

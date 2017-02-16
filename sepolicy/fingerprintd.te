@@ -1,0 +1,2 @@
+allow fingerprintd tee_device:chr_file { read write ioctl open };
+allow fingerprintd sysfs_fpc_irq:file { write read open };
