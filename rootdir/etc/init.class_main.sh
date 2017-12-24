@@ -62,31 +62,6 @@ case "$baseband" in
     multisim=`getprop persist.radio.multisim.config`
 
     if [ "$multisim" = "dsds" ] || [ "$multisim" = "dsda" ]; then
-    # ifdef VENDOR_EDIT
-    # xiang.gui@NW.AP.Cfg.856787, 2016/10/03
-    # add for two sim matched the same stack
-    # PATCH_165709_SBAforTaskidCaseid_20160914, Related CRs 1065596
-        ril0_stack=`getprop persist.radio.msim.stackid_0`
-        ril1_stack=`getprop persist.radio.msim.stackid_1`
-
-        if [ -n "$ril0_stack" ]; then
-            if [ "$ril0_stack" -eq 0 ]; then
-                ril0_complement=1
-            else
-                ril0_complement=0
-            fi
-
-            if [ "$ril0_stack" -eq "$ril1_stack" ] || [ -z "$ril1_stack" ]; then
-                ril1_stack=$ril0_complement
-                setprop persist.radio.msim.stackid_1 $ril1_stack
-            fi
-        else
-            if [ "$ril1_stack" -eq 0 ]; then
-                setprop persist.radio.msim.stackid_1 1
-                setprop persist.radio.msim.stackid_0 0
-            fi
-        fi
-    # endif
         start ril-daemon2
     elif [ "$multisim" = "tsts" ]; then
         start ril-daemon2

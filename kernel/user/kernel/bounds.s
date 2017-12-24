@@ -1,23 +1,24 @@
 	.cpu generic+fp+simd
 	.file	"bounds.c"
-// GNU C (GCC) version 4.9.x-google 20140827 (prerelease) (aarch64-linux-android)
+// GNU C (GCC) version 4.9 20150123 (prerelease) (aarch64-linux-android)
 //	compiled by GNU C version 4.8, GMP version 5.0.5, MPFR version 3.1.1, MPC version 1.0.1
 // GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 // options passed:  -nostdinc
-// -I /home/wuxianlin/android/caf/kernel/arch/arm64/include
+// -I /home/wuxianlin/android/caf/kernel/msm-3.18/arch/arm64/include
 // -I arch/arm64/include/generated
-// -I /home/wuxianlin/android/caf/kernel/include -I include
-// -I /home/wuxianlin/android/caf/kernel/arch/arm64/include/uapi
+// -I /home/wuxianlin/android/caf/kernel/msm-3.18/include -I include
+// -I /home/wuxianlin/android/caf/kernel/msm-3.18/arch/arm64/include/uapi
 // -I arch/arm64/include/generated/uapi
-// -I /home/wuxianlin/android/caf/kernel/include/uapi
-// -I include/generated/uapi -I /home/wuxianlin/android/caf/kernel/. -I .
-// -iprefix /home/wuxianlin/android/cm-13.0/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/../lib/gcc/aarch64-linux-android/4.9.x-google/
+// -I /home/wuxianlin/android/caf/kernel/msm-3.18/include/uapi
+// -I include/generated/uapi
+// -I /home/wuxianlin/android/caf/kernel/msm-3.18/. -I .
+// -iprefix /home/wuxianlin/android/cm-14.1/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/../lib/gcc/aarch64-linux-android/4.9/
 // -D __KERNEL__ -D KBUILD_STR(s)=#s -D KBUILD_BASENAME=KBUILD_STR(bounds)
 // -D KBUILD_MODNAME=KBUILD_STR(bounds)
-// -isystem /home/wuxianlin/android/cm-13.0/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/../lib/gcc/aarch64-linux-android/4.9.x-google/include
-// -include /home/wuxianlin/android/caf/kernel/include/linux/kconfig.h
+// -isystem /home/wuxianlin/android/cm-14.1/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/../lib/gcc/aarch64-linux-android/4.9/include
+// -include /home/wuxianlin/android/caf/kernel/msm-3.18/include/linux/kconfig.h
 // -MD kernel/.bounds.s.d
-// /home/wuxianlin/android/caf/kernel/kernel/bounds.c -mbionic
+// /home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c -mbionic
 // -mlittle-endian -mgeneral-regs-only -mabi=lp64
 // -auxbase-strip kernel/bounds.s -g -Os -Wall -Wundef -Wstrict-prototypes
 // -Wno-trigraphs -Werror=implicit-function-declaration
@@ -32,7 +33,7 @@
 // options enabled:  -faggressive-loop-optimizations -fauto-inc-dec
 // -fbranch-count-reg -fcaller-saves -fcombine-stack-adjustments
 // -fcompare-elim -fcprop-registers -fcrossjumping -fcse-follow-jumps
-// -fdefer-pop -fdevirtualize -fdevirtualize-speculatively -fdwarf2-cfi-asm
+// -fdefer-pop -fdevirtualize-speculatively -fdwarf2-cfi-asm
 // -fearly-inlining -feliminate-unused-debug-types
 // -fexpensive-optimizations -fforward-propagate -ffunction-cse -fgcse
 // -fgcse-lm -fgnu-runtime -fgnu-unique -fguess-branch-probability
@@ -42,9 +43,9 @@
 // -fipa-profile -fipa-pure-const -fipa-reference -fipa-sra
 // -fira-hoist-pressure -fira-share-save-slots -fira-share-spill-slots
 // -fisolate-erroneous-paths-dereference -fivopts -fkeep-static-consts
-// -fleading-underscore -fmath-errno -fmerge-constants
+// -fleading-underscore -flifetime-dse -fmath-errno -fmerge-constants
 // -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
-// -fpartial-inlining -fpeel-codesize-limit -fpeephole -fpeephole2
+// -fpartial-inlining -fpeel-codesize-limit -fpeephole -fpeephole2 -fplt
 // -fprefetch-loop-arrays -free -freg-struct-return -freorder-blocks
 // -freorder-functions -frerun-cse-after-loop
 // -fsched-critical-path-heuristic -fsched-dep-count-heuristic
@@ -65,7 +66,8 @@
 // -ftree-tail-merge -ftree-ter -ftree-vrp -funit-at-a-time
 // -funroll-codesize-limit -fvar-tracking -fverbose-asm
 // -fzero-initialized-in-bss -mandroid -mbionic -mfix-cortex-a53-835769
-// -mgeneral-regs-only -mlittle-endian -mlra -momit-leaf-frame-pointer
+// -mfix-cortex-a53-843419 -mgeneral-regs-only -mlittle-endian -mlra
+// -momit-leaf-frame-pointer
 
 	.text
 .Ltext0:
@@ -75,27 +77,27 @@
 	.type	foo, %function
 foo:
 .LFB128:
-	.file 1 "/home/wuxianlin/android/caf/kernel/kernel/bounds.c"
+	.file 1 "/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c"
 	.loc 1 16 0
 	.cfi_startproc
 	.loc 1 18 0
 #APP
-// 18 "/home/wuxianlin/android/caf/kernel/kernel/bounds.c" 1
+// 18 "/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c" 1
 	
 ->NR_PAGEFLAGS 23 __NR_PAGEFLAGS	//
 // 0 "" 2
 	.loc 1 19 0
-// 19 "/home/wuxianlin/android/caf/kernel/kernel/bounds.c" 1
+// 19 "/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c" 1
 	
 ->MAX_NR_ZONES 3 __MAX_NR_ZONES	//
 // 0 "" 2
 	.loc 1 21 0
-// 21 "/home/wuxianlin/android/caf/kernel/kernel/bounds.c" 1
+// 21 "/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c" 1
 	
 ->NR_CPUS_BITS 3 ilog2(CONFIG_NR_CPUS)	//
 // 0 "" 2
 	.loc 1 23 0
-// 23 "/home/wuxianlin/android/caf/kernel/kernel/bounds.c" 1
+// 23 "/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c" 1
 	
 ->SPINLOCK_SIZE 4 sizeof(spinlock_t)	//
 // 0 "" 2
@@ -106,11 +108,11 @@ foo:
 .LFE128:
 	.size	foo, .-foo
 .Letext0:
-	.file 2 "/home/wuxianlin/android/caf/kernel/include/linux/page-flags.h"
-	.file 3 "/home/wuxianlin/android/caf/kernel/include/linux/mmzone.h"
-	.file 4 "/home/wuxianlin/android/caf/kernel/arch/arm64/include/asm/cachetype.h"
-	.file 5 "/home/wuxianlin/android/caf/kernel/include/linux/printk.h"
-	.file 6 "/home/wuxianlin/android/caf/kernel/include/linux/kernel.h"
+	.file 2 "/home/wuxianlin/android/caf/kernel/msm-3.18/include/linux/page-flags.h"
+	.file 3 "/home/wuxianlin/android/caf/kernel/msm-3.18/include/linux/mmzone.h"
+	.file 4 "/home/wuxianlin/android/caf/kernel/msm-3.18/arch/arm64/include/asm/cachetype.h"
+	.file 5 "/home/wuxianlin/android/caf/kernel/msm-3.18/include/linux/printk.h"
+	.file 6 "/home/wuxianlin/android/caf/kernel/msm-3.18/include/linux/kernel.h"
 	.section	.debug_info,"",%progbits
 .Ldebug_info0:
 	.4byte	0x1d9
@@ -516,6 +518,8 @@ foo:
 	.section	.debug_str,"MS",%progbits,1
 .LASF26:
 	.string	"PG_head"
+.LASF54:
+	.string	"/home/wuxianlin/android/cm-14.1/out/target/product/r9s/obj/KERNEL_OBJ"
 .LASF48:
 	.string	"console_printk"
 .LASF22:
@@ -524,12 +528,10 @@ foo:
 	.string	"ZONE_NORMAL"
 .LASF29:
 	.string	"PG_mappedtodisk"
+.LASF40:
+	.string	"PG_slob_free"
 .LASF12:
 	.string	"PG_locked"
-.LASF52:
-	.ascii	"GNU C 4.9.x-google 20140827 (prerelease) -mbionic -mlittle-e"
-	.ascii	"ndian -mgeneral-regs-only -mabi=lp64 -g -Os -std=g"
-	.string	"nu90 -fno-strict-aliasing -fno-common -fno-pic -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0"
 .LASF16:
 	.string	"PG_dirty"
 .LASF25:
@@ -550,26 +552,26 @@ foo:
 	.string	"PG_swapcache"
 .LASF42:
 	.string	"zone_type"
-.LASF53:
-	.string	"/home/wuxianlin/android/caf/kernel/kernel/bounds.c"
+.LASF7:
+	.string	"long unsigned int"
 .LASF3:
 	.string	"short unsigned int"
 .LASF31:
 	.string	"PG_swapbacked"
-.LASF54:
-	.string	"/home/wuxianlin/android/cm-13.0/out/target/product/r9s/obj/KERNEL_OBJ"
 .LASF36:
 	.string	"PG_checked"
 .LASF1:
 	.string	"unsigned char"
-.LASF17:
-	.string	"PG_lru"
+.LASF53:
+	.string	"/home/wuxianlin/android/caf/kernel/msm-3.18/kernel/bounds.c"
 .LASF27:
 	.string	"PG_tail"
 .LASF41:
 	.string	"pageflags"
-.LASF7:
-	.string	"long unsigned int"
+.LASF52:
+	.ascii	"GNU C 4.9 20150123 (prerelease) -mbionic -mlittle-endian -mg"
+	.ascii	"eneral-regs-only -mabi=lp64 -g -Os -std=g"
+	.string	"nu90 -fno-strict-aliasing -fno-common -fno-pic -fno-delete-null-pointer-checks -fstack-protector-strong -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -fno-strict-overflow -fconserve-stack --param allow-store-data-races=0"
 .LASF4:
 	.string	"unsigned int"
 .LASF13:
@@ -594,8 +596,8 @@ foo:
 	.string	"PG_private_2"
 .LASF5:
 	.string	"long long int"
-.LASF40:
-	.string	"PG_slob_free"
+.LASF17:
+	.string	"PG_lru"
 .LASF9:
 	.string	"char"
 .LASF32:
@@ -626,5 +628,5 @@ foo:
 	.string	"PG_mlocked"
 .LASF43:
 	.string	"ZONE_DMA"
-	.ident	"GCC: (GNU) 4.9.x-google 20140827 (prerelease)"
+	.ident	"GCC: (GNU) 4.9 20150123 (prerelease)"
 	.section	.note.GNU-stack,"",%progbits

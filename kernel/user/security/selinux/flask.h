@@ -52,6 +52,7 @@
 #define SECCLASS_KERNEL_SERVICE                          48
 #define SECCLASS_TUN_SOCKET                              49
 #define SECCLASS_BINDER                                  50
+#define SECCLASS_CAN_SOCKET                              51
 
 #define SECINITSID_KERNEL                                   1
 #define SECINITSID_SECURITY                                 2
@@ -110,6 +111,7 @@ static inline bool security_is_socket_class(u16 kern_tclass)
 	case SECCLASS_APPLETALK_SOCKET:
 	case SECCLASS_DCCP_SOCKET:
 	case SECCLASS_TUN_SOCKET:
+	case SECCLASS_CAN_SOCKET:
 		sock = true;
 		break;
 	default:

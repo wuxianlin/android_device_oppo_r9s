@@ -1,4 +1,4 @@
-/* Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2009-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -32,8 +32,7 @@
 
 #include <loc_eng.h>
 #include <MsgTask.h>
-#include "log_util.h"
-#include "platform_lib_includes.h"
+#include <platform_lib_includes.h>
 
 using namespace loc_core;
 
@@ -124,6 +123,13 @@ int loc_eng_xtra_init (loc_eng_data_s_type &loc_eng_data,
     loc_eng_xtra_data_s_type *xtra_module_data_ptr;
     ENTRY_LOG();
 
+    if(!loc_eng_data.adapter->mSupportsTimeInjection
+       || loc_eng_data.adapter->hasNativeXtraClient()) {
+        LOC_LOGD("XTRA is already supported. disable it here.\n");
+        EXIT_LOG(%d, 1); // return 1 denote failure
+        return 1;
+    }
+
     if(callbacks == NULL) {
         LOC_LOGE("loc_eng_xtra_init: failed, cb is NULL");
     } else {
@@ -184,16 +190,6 @@ int loc_eng_xtra_request_server(loc_eng_data_s_type &loc_eng_data)
     LocEngAdapter* adapter = loc_eng_data.adapter;
     adapter->sendMsg(new LocEngRequestXtraServer(adapter));
     EXIT_LOG(%d, 0);
-    return 0;
-}
-/*===========================================================================
-FUNCTION    loc_eng_set_debug_level
-
-===========================================================================*/
-int loc_eng_set_debug_level(loc_eng_data_s_type &loc_eng_data, int type)
-{
-    ENTRY_LOG();
-    EXIT_LOG(%d, type);
     return 0;
 }
 /*===========================================================================

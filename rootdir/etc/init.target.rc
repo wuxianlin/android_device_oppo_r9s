@@ -40,6 +40,7 @@ on fs
     write /proc/sys/vm/swappiness 100
 
     mkdir /persist/data 0700 system system
+    mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
 
 on post-fs-data
@@ -55,7 +56,7 @@ on post-fs-data
 	#Wanghao@phone.BSP.tp 2016/06/23 del for close hbtp
 	# mkdir /data/misc/hbtp 0750 system system
 	#endif
-	
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -100,12 +101,19 @@ service qseecomd /system/bin/qseecomd
 #service aostlmd /system/bin/aostlmd
 #   class late_start
 #   user system
-#   group system net_raw
+#   group system
 
 service perfd /system/vendor/bin/perfd
    class main
    user root
    disabled
+
+service gamed /system/vendor/bin/gamed
+   class main
+   user system
+   group system
+   disabled
+   socket gamed seqpacket 0640 system system
 
 service thermal-engine /system/vendor/bin/thermal-engine
    class main
@@ -137,6 +145,21 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+#ifdef VENDOR_EDIT
+#hanshiguang@swdp.shanghai 2017/04/14 enable the background cpuset
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-7
+    write /dev/cpuset/background/cpus 4
+    write /dev/cpuset/system-background/cpus 4
+# Create freezer cgroup nodes
+    mkdir /dev/freezer
+    mount cgroup none /dev/freezer freezer
+    mkdir /dev/freezer/freezer1
+    write /dev/freezer/freezer1/freezer.state FROZEN
+    mkdir /dev/freezer/freezer2
+    write /dev/freezer/freezer1/freezer.state FROZEN
+#endif
 
 service wcnss-service /system/bin/wcnss_service
     class main
@@ -170,7 +193,7 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
 service imscmservice /system/bin/imscmservice
    class main
    user system
-   group radio net_raw diag diag log
+   group radio diag inet log
    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1

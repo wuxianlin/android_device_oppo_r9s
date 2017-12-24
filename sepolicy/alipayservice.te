@@ -1,3 +1,22 @@
+type alipayservice, domain;
 type alipayservice_exec, exec_type, file_type;
+
+# alipayservice
+init_daemon_domain(alipayservice)
+binder_service(alipayservice)
+binder_use(alipayservice)
+
+# For permissions checking
+binder_call(alipayservice, system_server);
+allow alipayservice permission_service:service_manager find;
+
+allow alipayservice tee_device:chr_file {read write open ioctl};
+
+allow alipayservice firmware_file:dir {search};
+
+allow alipayservice firmware_file:file {read open getattr};
+
+allow alipayservice alipay_service:service_manager add;
+
 
 

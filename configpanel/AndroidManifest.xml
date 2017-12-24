@@ -17,18 +17,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           android:sharedUserId="android.uid.system"
           package="com.cyanogenmod.settings.device"
-          android:versionCode="5"
-          android:versionName="2.3" >
+          android:versionCode="6"
+          android:versionName="2.4" >
 
     <uses-permission android:name="android.permission.INJECT_EVENTS"/>
     <uses-permission android:name="cyanogenmod.permission.HARDWARE_ABSTRACTION_ACCESS" />
 
     <uses-sdk
-        android:minSdkVersion="21" />
+        android:minSdkVersion="24" />
 
     <application
         android:icon="@mipmap/ic_launcher_settings"
-        android:label="@*cyanogenmod.platform:string/device_settings_app_name"
+        android:label="@string/device_settings_app_name"
         android:theme="@style/Theme.Main">
 
         <!-- stub to ensure its loaded - DO NOT REMOVE -->
@@ -36,7 +36,7 @@
 
         <activity
             android:name=".TouchscreenGestureSettings"
-            android:label="@*cyanogenmod.platform:string/screen_gestures_panel_title">
+            android:label="@string/screen_gestures_panel_title">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>

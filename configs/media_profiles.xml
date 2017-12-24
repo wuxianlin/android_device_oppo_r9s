@@ -93,7 +93,14 @@
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
     <!-- Back Camera -->
+<!-- #ifndef VENDOR_EDIT -->
+<!-- Xiaopeng.Hu@MultiMedia.MediaServer.Recorder, 2017/02/03, Modify for the recorder video duration inaccurate,bug:918777 -->
+<!--
+    <CamcorderProfiles cameraId="0">
+-->
+<!-- #else  //VENDOR_EDIT -->
     <CamcorderProfiles cameraId="0" startOffsetMs="300">
+<!-- #endif //VENDOR_EDIT -->
 
     <EncoderProfile quality="low" fileFormat="3gp" duration="30">
       <Video codec="h264"
@@ -452,7 +459,14 @@
 
     </CamcorderProfiles>
     <!-- Front Camera -->
+<!-- #ifndef VENDOR_EDIT -->
+<!-- Xiaopeng.Hu@MultiMedia.MediaServer.Recorder, 2017/02/03, Modify for the recorder video duration inaccurate,bug:918777 -->
+<!--
+    <CamcorderProfiles cameraId="1">
+-->
+<!-- #else  //VENDOR_EDIT -->
     <CamcorderProfiles cameraId="1" startOffsetMs="300">
+<!-- #endif //VENDOR_EDIT -->
 
     <EncoderProfile quality="low" fileFormat="3gp" duration="30">
       <Video codec="h264"
@@ -736,7 +750,7 @@
         maxHFRFrameWidth="0" maxHFRFrameHeight="0"
         maxHFRMode="0"  />
 
-    <VideoEncoderCap name="h265" enabled="true"
+    <VideoEncoderCap name="hevc" enabled="true"
         minBitRate="64000" maxBitRate="100000000"
         minFrameWidth="176" maxFrameWidth="3840"
         minFrameHeight="144" maxFrameHeight="2160"

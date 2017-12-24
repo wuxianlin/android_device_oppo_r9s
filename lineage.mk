@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,17 +32,11 @@ PRODUCT_BRAND := OPPO
 PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
 #TARGET_VENDOR_PRODUCT_NAME := R9s
-TARGET_VENDOR_DEVICE_NAME := R9s
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=R9s PRODUCT_NAME=R9s
+#TARGET_VENDOR_DEVICE_NAME := R9s
+#PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=R9s PRODUCT_NAME=R9s
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=OPPO/R9s/R9s:6.0.1/MMB29M/1390465867:user/release-keys \
-    PRIVATE_BUILD_DESC="msm8953_64-user 6.0.1 MMB29M eng.root.20170112.012708 dev-keys"
-
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
-    ro.product.model \
-    ro.product.name \
-    ro.build.product
+#PRODUCT_BUILD_PROP_OVERRIDES += \
+#    BUILD_FINGERPRINT=OPPO/R9s/R9s:7.1.1/NMF26F/1490443277:user/release-keys \
+#    PRIVATE_BUILD_DESC="msm8953_64-user 7.1.1 NMF26F 992 dev-keys"
 
 TARGET_VENDOR := OPPO
-

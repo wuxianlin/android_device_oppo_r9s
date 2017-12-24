@@ -1,5 +1,6 @@
 /*
    Copyright (c) 2016, The CyanogenMod Project
+             (c) 2017, The LineageOS Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -27,14 +28,27 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <unistd.h>
 #include <fcntl.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
 
-#include <cutils/properties.h>
 #include "vendor_init.h"
+#include "property_service.h"
 #include "log.h"
 #include "util.h"
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
 
 static int read_file2(const char *fname, char *data, int max_size)
 {
@@ -90,30 +104,31 @@ void init_alarm_boot_properties()
 
 void vendor_load_properties() {
     char device[PROP_VALUE_MAX];
-    int rc;
-
-    rc = property_get("ro.cm.device", device, NULL);
-    if (!rc || strncmp(device, "r9s", PROP_VALUE_MAX))
-        return;
-
     char const *prj_file = "/proc/oppoVersion/prjVersion";
     char prj_version[64];
-    if(read_file2(prj_file, prj_version, sizeof(prj_version))) {
-        if(strstr(prj_version, "16017")) {
-            property_set("ro.product.model", "OPPO R9s");
+    if (read_file2(prj_file, prj_version, sizeof(prj_version))) {
+        if (strstr(prj_version, "16017")) {
+            property_override("ro.product.model", "OPPO R9s");
             property_set("ro.separate.soft", "MSM_16017");
-            property_set("ro.product.name", "R9s");
-            property_set("ro.build.product", "R9s");
+            property_override("ro.product.device", "R9s");
+            property_override("ro.product.name", "R9s");
+            property_override("ro.build.product", "R9s");
             property_set("ro.rf_version", "TDD_FDD_Ch_A_16017");
-        } else if(strstr(prj_version, "16027")) {
-            property_set("ro.product.model", "OPPO R9sk");
+            property_set("ro.qualcomm.foss", "1");
+            property_set("ro.qualcomm.display.paneltype", "1");
+            property_set("config.foss.xml", "1");
+            property_set("config.foss.path", "/system/etc/FOSSConfig.xml");
+            property_override("config.svi.path", "/system/etc/svi_config_16017.xml");
+        } else if (strstr(prj_version, "16027")) {
+            property_override("ro.product.model", "OPPO R9sk");
             property_set("ro.separate.soft", "MSM_16027");
-            property_set("ro.product.name", "R9sk");
-            property_set("ro.build.product", "R9sk");
+            property_override("ro.product.device", "R9sk");
+            property_override("ro.product.name", "R9sk");
+            property_override("ro.build.product", "R9sk");
             property_set("ro.rf_version", "TDD_FDD_Ch_A_16027");
+            property_override("config.svi.path", "/system/etc/svi_config_16027.xml");
         }
     }
 
     init_alarm_boot_properties();
 }
-

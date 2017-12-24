@@ -8,8 +8,6 @@ etc/firmware/alipay.b04
 etc/firmware/alipay.b05
 etc/firmware/alipay.b06
 etc/firmware/alipay.mdt
-etc/permissions/org.ifaa.android.manager.permissions.xml
-framework/ifaamanager.jar
 lib/libteeclientjni.so
 lib64/libteeclientjni.so
 
@@ -25,7 +23,6 @@ etc/acdbdata/16017/Handset_cal.acdb
 etc/acdbdata/16017/Hdmi_cal.acdb
 etc/acdbdata/16017/Headset_cal.acdb
 etc/acdbdata/16017/Speaker_cal.acdb
-etc/acdbdata/16017/workspaceFile.qwsp
 etc/acdbdata/16027/Bluetooth_cal.acdb
 etc/acdbdata/16027/General_cal.acdb
 etc/acdbdata/16027/Global_cal.acdb
@@ -33,7 +30,6 @@ etc/acdbdata/16027/Handset_cal.acdb
 etc/acdbdata/16027/Hdmi_cal.acdb
 etc/acdbdata/16027/Headset_cal.acdb
 etc/acdbdata/16027/Speaker_cal.acdb
-etc/acdbdata/16027/workspaceFile.qwsp
 
 # Camera
 bin/mm-qcamera-daemon
@@ -53,19 +49,19 @@ lib/libmms_hal_vstab.so
 lib/libmms_warper_vstab.so
 lib/libst_mobile.so
 lib/libDocFace.so
-lib/libFNPlatformGL_Oppo_msm8953.so
 lib/libFNVfbEngineHAL.so
 lib/libSCES.so
 lib/libSensorManagerHAL.so
 lib/libVDBlurlessAPI.so
 lib/libVDSuperPhotoAPI.so
+lib/libjpeg_oppo.so
+lib/libFNPlatformGL_Oppo_msm8953_N.so
 lib64/libcritical_log_service.so
 lib/hw/camera.msm8953.so
 vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libSonyIMX298PdafLibrary.so
 vendor/lib/libchromaflash.so
-vendor/lib/libllvd_smore.so
 vendor/lib/libflash_lm3642.so
 vendor/lib/libcvface_api.so
 vendor/lib/libjpegdhw.so
@@ -73,7 +69,6 @@ vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
 vendor/lib/liboptizoom.so
 vendor/lib/libseemore.so
-vendor/lib/libllvd_sw_tnr.so
 vendor/lib/libubifocus.so
 vendor/lib/libtrueportrait.so
 vendor/lib/libmmcamera2_c2d_module.so
@@ -84,6 +79,7 @@ vendor/lib/libmmcamera2_iface_modules.so
 vendor/lib/libmmcamera2_imglib_modules.so
 vendor/lib/libmmcamera2_isp_modules.so
 vendor/lib/libmmcamera2_is.so
+vendor/lib/libmmcamera2_mct_shimlayer.so
 vendor/lib/libmmcamera2_mct.so
 vendor/lib/libmmcamera2_pp_buf_mgr.so
 vendor/lib/libmmcamera2_pproc_modules.so
@@ -91,6 +87,7 @@ vendor/lib/libmmcamera2_q3a_core.so
 vendor/lib/libmmcamera2_sensor_modules.so
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
+vendor/lib/libmmcamera_cac3_lib.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_dbg.so
 vendor/lib/libmmcamera_dcrf_lib.so
@@ -98,6 +95,7 @@ vendor/lib/libmmcamera_dummyalgo.so
 vendor/lib/libmmcamera_eebinparse.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
+vendor/lib/libmmcamera_facedetection_lib.so
 vendor/lib/libmmcamera_faceproc2.so
 vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
@@ -107,14 +105,15 @@ vendor/lib/libmmcamera_s5k3p8sp.so
 vendor/lib/libmmcamera_semco_cat24c64_eeprom.so
 vendor/lib/libmmcamera_quadracfa.so
 vendor/lib/libmmcamera_sunny_cat24c64_eeprom.so
+vendor/lib/libmmcamera_sw2d_lib.so
 vendor/lib/libmmcamera_llvd.so
 vendor/lib/libmmcamera_optizoom_lib.so
 vendor/lib/libmmcamera_paaf_lib.so
 vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_ppbase_module.so
+vendor/lib/libmmcamera_ppeiscore.so
 vendor/lib/libmmcamera_stillmore_lib.so
-vendor/lib/libmmcamera_sw_tnr.so
 vendor/lib/libmmcamera_thread_services.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
@@ -139,6 +138,8 @@ vendor/lib/libchromatix_imx398_4K_preview.so
 vendor/lib/libchromatix_imx398_4K_preview_sunny.so
 vendor/lib/libchromatix_imx398_4K_video.so
 vendor/lib/libchromatix_imx398_4K_video_sunny.so
+vendor/lib/libchromatix_imx398_a3_preview_engineer_mode.so
+vendor/lib/libchromatix_imx398_a3_preview_engineer_mode_sunny.so
 vendor/lib/libchromatix_imx398_common_non_zsl.so
 vendor/lib/libchromatix_imx398_common.so
 vendor/lib/libchromatix_imx398_common_sunny.so
@@ -150,11 +151,13 @@ vendor/lib/libchromatix_imx398_cpp_hfr_60.so
 vendor/lib/libchromatix_imx398_cpp_hfr_90.so
 vendor/lib/libchromatix_imx398_cpp_liveshot.so
 vendor/lib/libchromatix_imx398_cpp_preview_cmcc.so
+vendor/lib/libchromatix_imx398_cpp_preview_engineer_mode.so
 vendor/lib/libchromatix_imx398_cpp_preview_panorama.so
 vendor/lib/libchromatix_imx398_cpp_preview.so
 vendor/lib/libchromatix_imx398_cpp_preview_special.so
 vendor/lib/libchromatix_imx398_cpp_preview_wchat.so
 vendor/lib/libchromatix_imx398_cpp_snapshot_cmcc.so
+vendor/lib/libchromatix_imx398_cpp_snapshot_engineer_mode.so
 vendor/lib/libchromatix_imx398_cpp_snapshot_hdr.so
 vendor/lib/libchromatix_imx398_cpp_snapshot_panorama.so
 vendor/lib/libchromatix_imx398_cpp_snapshot.so
@@ -177,6 +180,7 @@ vendor/lib/libchromatix_imx398_hfr_90.so
 vendor/lib/libchromatix_imx398_liveshot.so
 vendor/lib/libchromatix_imx398_postproc.so
 vendor/lib/libchromatix_imx398_preview.so
+vendor/lib/libchromatix_imx398_preview_engineer_mode.so
 vendor/lib/libchromatix_imx398_preview_special.so
 vendor/lib/libchromatix_imx398_snapshot_cmcc.so
 vendor/lib/libchromatix_imx398_snapshot_hdr.so
@@ -210,6 +214,7 @@ vendor/lib/libchromatix_s5k3p8sp_a3_zsl_preview.so
 vendor/lib/libchromatix_s5k3p8sp_a3_zsl_preview_truly.so
 vendor/lib/libchromatix_s5k3p8sp_a3_zsl_video.so
 vendor/lib/libchromatix_s5k3p8sp_a3_zsl_video_truly.so
+vendor/lib/libchromatix_s5k3p8sp_common_otherapk.so
 vendor/lib/libchromatix_s5k3p8sp_common.so
 vendor/lib/libchromatix_s5k3p8sp_cpp_custom.so
 vendor/lib/libchromatix_s5k3p8sp_cpp_fb_preview.so
@@ -248,13 +253,14 @@ vendor/lib/libchromatix_s5k3p8sp_snapshot_wchat.so
 # Camera firmware
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_10_0.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_4_0.fw
 etc/firmware/cpp_firmware_v1_5_0.fw
 etc/firmware/cpp_firmware_v1_5_2.fw
 etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
+etc/firmware/cpp_firmware_v1_10_0.fw
+etc/firmware/cpp_firmware_v1_12_0.fw
 
 # Camera sensors
 vendor/lib/libmmcamera_isp_abf40.so
@@ -307,21 +313,13 @@ lib64/libalipay_factory.so
 lib/hw/fingerprint.msm8953.so
 lib/lib_fpc_tac_shared.so
 lib/libalipay_factory.so
-framework/sotermanager.jar
 
 # Firmware
-etc/firmware/DE.o.msm8953
 etc/firmware/hbtp/hbtpcfg.dat
 etc/firmware/hbtp/qtc800s_dsp.bin
 etc/firmware/ice40.bin
 etc/firmware/leia_pfp_470.fw
 etc/firmware/leia_pm4_470.fw
-etc/firmware/qtc800s.bin
-etc/firmware/qtc800s.cfg
-
-# Graphics
-etc/qdcm_calib_data_oppo16017samsung_ea8064_1080p_cmd_mode_dsi_panel.xml
-etc/qdcm_calib_data_oppo16027jdi_r63452_1080p_cmd_mode_dsi_panel.xml
 
 # Sensors
 etc/sensors/hals.conf

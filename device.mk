@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,6 +29,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.audio.pro.xml:system/etc/permissions/android.hardware.audio.pro.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -49,6 +51,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
@@ -59,12 +63,28 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# Device was launched with M
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.first_api_level=23
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
 # Haters gonna hate..
 PRODUCT_CHARACTERISTICS := default
+
+# Alipay & WeChat fingerprint payment
+PRODUCT_PACKAGES += \
+    ifaamanager \
+    soter
+
+PRODUCT_BOOT_JARS += \
+    ifaamanager \
+    soter
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ifaamanager/etc/org.ifaa.android.manager.permissions.xml:system/etc/permissions/org.ifaa.android.manager.permissions.xml
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -77,6 +97,7 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libvolumelistener \
     tinymix
 
 PRODUCT_COPY_FILES += \
@@ -84,13 +105,21 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
+    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:system/etc/mixer_paths_mtp.xml \
+    $(LOCAL_PATH)/audio/mixer_paths_mtp.xml:system/etc/mixer_paths_16017.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9306.xml:system/etc/sound_trigger_mixer_paths_wcd9306.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
+
+PRODUCT_COPY_FILES += \
+    $(TOPDIR)frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml \
+    $(TOPDIR)frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
+    $(TOPDIR)frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
+    $(TOPDIR)frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
+    $(TOPDIR)frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -103,7 +132,8 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap
+    Snap \
+    libcamera_shim
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -121,44 +151,29 @@ PRODUCT_PACKAGES += \
     libtinyxml
 
 # Display calibration
-#PRODUCT_PACKAGES += \
-#    libjni_livedisplay
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/FOSSConfig.xml:system/etc/FOSSConfig.xml
+PRODUCT_PACKAGES += \
+    qdcm_calib_data_oppo16017samsung_ea8064_1080p_cmd_mode_dsi_panel.xml \
+    qdcm_calib_data_oppo16027jdi_r63452_1080p_cmd_mode_dsi_panel.xml \
+    FOSSConfig.xml \
+    svi_config_16017.xml \
+    svi_config_16027.xml
 
 # Doze mode
 PRODUCT_PACKAGES += \
     OppoDoze
 
-# Face detection extension
-PRODUCT_PACKAGES += \
-    org.codeaurora.camera
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
-
-# Alipay
-PRODUCT_BOOT_JARS += \
-    ifaamanager
-
-# Wechat pay
-PRODUCT_BOOT_JARS += \
-    sotermanager
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8953 \
-    libcurl
+    libgnsspps
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
@@ -192,6 +207,10 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8953
+
+# LiveDisplay native
+PRODUCT_PACKAGES += \
+    libjni_livedisplay
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -229,26 +248,36 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.bt.sh \
-    init.qcom.post_boot.sh \
     init.class_main.sh \
     init.oppo.fingerprints.sh \
     init.oppo.rc \
     init.mdm.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
-    init.qcom.sensors.sh \
     init.qcom.rc \
+    init.qcom.sensors.sh \
     init.qcom.sh \
     init.oppo.usb.rc \
     init.qcom.usb.sh \
     init.target.rc \
     ueventd.qcom.rc
 
+PRODUCT_PACKAGES += \
+    init.qcom.audio.sh \
+    init.qcom.bt.sh \
+    init.qcom.coex.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.fm.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sdio.sh \
+    init.qcom.uicc.sh \
+    init.qcom.wifi.sh
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
-    libxml2
+    libxml2 \
+    libprotobuf-cpp-full
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -268,8 +297,8 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
-    $(LOCAL_PATH)/wifi/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
     $(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf

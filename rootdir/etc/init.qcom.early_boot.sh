@@ -194,8 +194,12 @@ case "$target" in
                 setprop ro.sf.lcd_density 240
                 setprop qemu.hw.mainkeys 0
                 ;;
+            "SBC")
+                setprop ro.sf.lcd_density 240
+                setprop qemu.hw.mainkeys 0
+                ;;
             *)
-                setprop ro.sf.lcd_density 480
+                setprop ro.sf.lcd_density 560
                 ;;
         esac
         ;;
@@ -204,14 +208,40 @@ case "$target" in
         # MSM8937 and MSM8940  variants supports OpenGLES 3.1
         # 196608 is decimal for 0x30000 to report version 3.0
         # 196609 is decimal for 0x30001 to report version 3.1
+        # 196610 is decimal for 0x30002 to report version 3.2
         case "$soc_hwid" in
             294|295|296|297|298|313)
-                setprop ro.opengles.version 196609
+                setprop ro.opengles.version 196610
+                ;;
+            303|307|308|309|320)
+                # Vulkan is not supported for 8917 & 8920 variants
+                setprop ro.opengles.version 196608
+                setprop persist.graphics.vulkan.disable true
                 ;;
             *)
                 setprop ro.opengles.version 196608
                 ;;
         esac
+        ;;
+    "msm8998")
+        case "$soc_hwplatform" in
+            *)
+                setprop ro.sf.lcd_density 560
+                if [ ! -e /dev/kgsl-3d0 ]; then
+                    setprop persist.sys.force_sw_gles 1
+                    setprop sdm.idle_time 0
+                else
+                    setprop persist.sys.force_sw_gles 0
+                fi
+                ;;
+        esac
+        ;;
+    "msm8953")
+        cap_ver=`cat /sys/devices/soc/1d00000.qcom,vidc/capability_version` 2> /dev/null
+        if [ $cap_ver -eq 1 ]; then
+            setprop media.msm8953.version 1
+            setprop media.settings.xml /etc/media_profiles_8953_v1.xml
+        fi
         ;;
 esac
 #set default lcd density
@@ -243,17 +273,20 @@ function setHDMIPermission() {
    set_perms $file/video_mode system.graphics 0664
    set_perms $file/format_3d system.graphics 0664
    set_perms $file/s3d_mode system.graphics 0664
+   set_perms $file/dynamic_fps system.graphics 0664
+   set_perms $file/msm_fb_dfps_mode system.graphics 0664
    set_perms $file/cec/enable system.graphics 0664
    set_perms $file/cec/logical_addr system.graphics 0664
    set_perms $file/cec/rd_msg system.graphics 0664
    set_perms $file/pa system.graphics 0664
    set_perms $file/cec/wr_msg system.graphics 0600
    set_perms $file/hdcp/tp system.graphics 0664
+   set_perms $file/hdmi_audio_cb audioserver.audio 0600
    ln -s $dev_file $dev_gfx_hdmi
 }
 
 # check for HDMI connection
-for fb_cnt in 0 1 2
+for fb_cnt in 0 1 2 3
 do
     file=/sys/class/graphics/fb$fb_cnt/msm_fb_panel_info
     if [ -f "$file" ]
@@ -297,14 +330,30 @@ then
         set_perms $file/msm_cmd_autorefresh_en system.graphics 0664
 fi
 
+# set lineptr permissions for all displays
+for fb_cnt in 0 1 2 3
+do
+    file=/sys/class/graphics/fb$fb_cnt/lineptr_value
+    if [ -f "$file" ]; then
+        set_perms $file system.graphics 0664
+    fi
+done
+
 boot_reason=`cat /proc/sys/kernel/boot_reason`
 reboot_reason=`getprop ro.boot.alarmboot`
+power_off_alarm_file=`cat /persist/alarm/powerOffAlarmSet`
 if [ "$boot_reason" = "3" ] || [ "$reboot_reason" = "true" ]; then
-    setprop ro.alarm_boot true
-    #ifdef VENDOR_EDIT
-    #Zongjun.Li@Swdp.Android.Alarm, 2016/06/24, Remove for bug 818343
-    #setprop debug.sf.nobootanimation 1
-    #endif VENDOR_EDIT
+    if [ "$power_off_alarm_file" = "1" ]
+    then
+        setprop ro.alarm_boot true
+        setprop debug.sf.nobootanimation 1
+    fi
 else
     setprop ro.alarm_boot false
+fi
+
+# copy GPU frequencies to system property
+if [ -f /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies ]; then
+    gpu_freq=`cat /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies` 2> /dev/null
+    setprop ro.gpu.available_frequencies "$gpu_freq"
 fi

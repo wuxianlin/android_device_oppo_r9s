@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+<library name="org.ifaa.android.manager.permissions" file="/system/framework/ifaamanager.jar" />
+</permissions>

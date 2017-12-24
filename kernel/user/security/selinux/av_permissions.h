@@ -49,6 +49,7 @@
 #define SYSTEM__SYSLOG_MOD                        0x00000004UL
 #define SYSTEM__SYSLOG_CONSOLE                    0x00000008UL
 #define SYSTEM__MODULE_REQUEST                    0x00000010UL
+#define SYSTEM__MODULE_LOAD                       0x00000020UL
 #define CAPABILITY__CHOWN                         0x00000001UL
 #define CAPABILITY__DAC_OVERRIDE                  0x00000002UL
 #define CAPABILITY__DAC_READ_SEARCH               0x00000004UL
@@ -842,5 +843,27 @@
 #define BINDER__CALL                              0x00000002UL
 #define BINDER__SET_CONTEXT_MGR                   0x00000004UL
 #define BINDER__TRANSFER                          0x00000008UL
+#define CAN_SOCKET__IOCTL                         0x00000001UL
+#define CAN_SOCKET__READ                          0x00000002UL
+#define CAN_SOCKET__WRITE                         0x00000004UL
+#define CAN_SOCKET__CREATE                        0x00000008UL
+#define CAN_SOCKET__GETATTR                       0x00000010UL
+#define CAN_SOCKET__SETATTR                       0x00000020UL
+#define CAN_SOCKET__LOCK                          0x00000040UL
+#define CAN_SOCKET__RELABELFROM                   0x00000080UL
+#define CAN_SOCKET__RELABELTO                     0x00000100UL
+#define CAN_SOCKET__APPEND                        0x00000200UL
+#define CAN_SOCKET__BIND                          0x00000400UL
+#define CAN_SOCKET__CONNECT                       0x00000800UL
+#define CAN_SOCKET__LISTEN                        0x00001000UL
+#define CAN_SOCKET__ACCEPT                        0x00002000UL
+#define CAN_SOCKET__GETOPT                        0x00004000UL
+#define CAN_SOCKET__SETOPT                        0x00008000UL
+#define CAN_SOCKET__SHUTDOWN                      0x00010000UL
+#define CAN_SOCKET__RECVFROM                      0x00020000UL
+#define CAN_SOCKET__SENDTO                        0x00040000UL
+#define CAN_SOCKET__RECV_MSG                      0x00080000UL
+#define CAN_SOCKET__SEND_MSG                      0x00100000UL
+#define CAN_SOCKET__NAME_BIND                     0x00200000UL
 
 #endif

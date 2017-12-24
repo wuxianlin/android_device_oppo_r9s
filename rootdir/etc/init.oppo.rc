@@ -10,17 +10,13 @@
 ### jiangyg@PM                     2013-10-21                Create this file
 ##################################################################################
 #ifdef VENDOR_EDIT
-#Haoran.Zhang@Swdp.Android.BuildConfig.BaseConfig, 2016/09/22, add for protect xkit
-on init
-   export XKIT /system/xbin/busybox
-#endif
-
-#ifdef VENDOR_EDIT
+#zhunn@OnLineRD.AirService.RIL, 2015/1/28, Add for cdma card cannot send sms in Yiwu
 #WeiHong.Li@Mobile.Network, 2015/09/11, Add suid_dumpable to capture rild's tombstone according to case 02090380
 #Zhengpeng@OnLineRD.AirService.RIL, 2013/11/4, Add for create opponvitems dir
 on boot
 	mkdir /data/opponvitems  0771 radio radio
 	write /proc/sys/fs/suid_dumpable 1
+	setprop persist.radio.force_on_dc true
 	write /sys/class/power_supply/usb/otg_switch 1
 #endif
 #ifdef VENDOR_EDIT
@@ -40,12 +36,6 @@ service alipayservice /system/bin/alipayservice
     chmod 0644 /data/system/oppo_display_perf_list.xml
 #endif /* VENDOR_EDIT */
 
-#ifdef VENDOR_EDIT
-#zhunn@OnLineRD.AirService.RIL, 2015/1/28, Add for cdma card cannot send sms in Yiwu
-	setprop persist.radio.force_on_dc true
-#endif
-
-#endif /* VENDOR_EDIT */
 
 # ifdef VENDOR_EDIT
 #WeiHong.Li@Mobile.Network, 2015/09/11, disalbe suid_dumpable if release_type=true to pass cts test

@@ -28,16 +28,6 @@
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
     </bit_width_configs>
-    <backend_names>
-        <device name="SND_DEVICE_OUT_HEADPHONES" backend="quin-mi2s" interface="QUIN_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_LINE" backend="quin-mi2s" interface="QUIN_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_VOICE_HEADPHONES" backend="quin-mi2s" interface="QUIN_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_VOICE_LINE" backend="quin-mi2s" interface="QUIN_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_SPEAKER" backend="quat-mi2s" interface="QUAT_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="quat-mi2s" interface="QUAT_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES" backend="quat-quin-mi2s" interface="QUAT_MI2S_RX-and-QUIN_MI2S_RX"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_LINE" backend="quat-quin-mi2s" interface="QUAT_MI2S_RX-and-QUIN_MI2S_RX"/>
-    </backend_names>
     <interface_names>
         <device name="AUDIO_DEVICE_IN_BUILTIN_MIC" interface="SLIMBUS_0" codec_type="external"/>
         <device name="AUDIO_DEVICE_IN_BACK_MIC" interface="SLIMBUS_0" codec_type="external"/>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The CyanogenMod Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,9 +130,9 @@ public class KeyHandler implements DeviceKeyHandler {
         return mRearCameraId;
     }
 
-    public boolean handleKeyEvent(KeyEvent event) {
+    public KeyEvent handleKeyEvent(KeyEvent event) {
         if (event.getAction() != KeyEvent.ACTION_UP) {
-            return false;
+            return event;
         }
         mBlackKeySettingState = Settings.System.getInt(mContext.getContentResolver(), "blackscreen_gestrue_enable", 0);
         int keyCode = event.getKeyCode();
@@ -192,9 +192,9 @@ public class KeyHandler implements DeviceKeyHandler {
             } else {
                 Log.i(TAG, "Screen off gesture received. But can't be recognized!");
             }
-            return true;
+            return null;
         }
-        return false;
+        return event;
     }
 
     public static int getOffset(int num, int index) {
